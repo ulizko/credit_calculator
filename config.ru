@@ -1,3 +1,5 @@
 require './main'
 
-run Sinatra::Application
+map '/' do
+  run Main
+end
