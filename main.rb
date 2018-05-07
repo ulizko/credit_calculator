@@ -1,15 +1,12 @@
 require 'sinatra/base'
+require "ostruct"
 require './controllers/base_controller.rb'
-require './controllers/home_controller.rb'
-require './home'
+require './controllers/calculator_controller.rb'
+require './services/calculator_service.rb'
+require './services/classic.rb'
+require './services/annuity.rb'
 
 class Main < Sinatra::Base
-  set :root, File.dirname(__FILE__)
-  set :views, Proc.new { File.join(root, "views") }
 
-  register Home
-
-  # get '/' do
-  #   erb :index
-  # end
+  use CalculatorController 
 end
