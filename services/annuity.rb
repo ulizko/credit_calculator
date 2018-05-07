@@ -10,7 +10,7 @@ class Annuity
   def calculate
     (0...term).each_with_object([]) do |el, obj|
       obj << OpenStruct.new(base: base_sum, percents: percents, left: left, month_payment: month_payment)
-      @left -= base_sum
+      @left = (left - base_sum).round(2)
     end
   end
 

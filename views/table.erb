@@ -1,2 +1,32 @@
-This Table
-<%= params %>
+<h1>График погашения платежей</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Номер платежа</th>
+      <th>Задолженность по кредиту</th>
+      <th>Погашение кредита</th>
+      <th>Проценты по кредиту</th>
+      <th>Выплаты в месяц</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @schedule.each_with_index do |s, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= s.left %></td>
+          <td><%= s.base %></td>
+          <td><%= s.percents %></td>
+          <td><%= s.month_payment %></td>
+        </tr>
+      <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th>Итого</th>
+      <th></th>
+      <th><%= @schedule.sum(&:base).round(2) %></th>
+      <th><%= @schedule.sum(&:percents).round(2) %></th>
+      <th><%= @schedule.sum(&:month_payment).round(2) %></th>
+    </tr>
+  </tfoot>
+</table>
