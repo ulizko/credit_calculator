@@ -3,6 +3,7 @@ class CalculatorService
 
   def initialize(amount, rate, term, calculator)
     @rate = rate
+    raise ArgumentError, 'Calculator must be one of Annuity or Classic' unless [Annuity, Classic].include?(calculator) 
     @calculator = calculator.new(amount, month_rate, term)
   end
 
